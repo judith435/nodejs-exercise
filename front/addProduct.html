@@ -1,62 +1,37 @@
-<!DOCTYPE html>
-<html ng-app='homework-app'>
-    <head>
-        <title>Create Movie</title>
-        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../node_modules/jquery/dist/jquery.min.js"></script>  
-                <!-- site less f        <script src="app.js"></script>
-        <script src="controller.js"></script>
-        <script src="service.js"></script>
-ile placed after bootstrap files to enable overriding of bootstrap styles --> 
-        <link rel="stylesheet/less" type="text/css" href="styles/style.less" />
-        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
-        <script src="../node_modules/angular/angular.min.js"></script>
-        <script src="app.js"></script>
-        <script src="controller.js"></script>
-        <script src="service.js"></script>
-        <!-- <script src="create_controller.js"></script>
-        <script src="validations.js"></script>  
-        <script src="validationsService.js"></script> -->
-    </head>
-    <body>
-        <div id="navigation-bar"></div> 
-        <div class="container" ng-controller="productsCtrl">
-            <h2>Create Movie</h2> 
-            <form name="frmCU" enctype="multipart/form-data" novalidate>
-                <div class="form-group row">
-                    <label for="movieName" class="col-xs-2 col-sm-2 col-md-3 col-lg-3 col-form-label">Movie Name</label>
-                    <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9" >
-                        <input type="text" class="form-control" ng-model="movieName" name="movieName"
-                             placeholder="Enter new Movie name" maxlength="50" required>
-                             <label ng-show="frmCU.movieName.$error.required && showErrorMessages"
-                                                     class="validationError" >Movie Name is required</label>       
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="DirectorDDL" class="col-xs-2 col-sm-2 col-md-3 col-lg-3 col-form-label">Movie Director</label>
-                    <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
-                        <select ng-model="selectedDirector"  class="form-control" name="ddlDirectors"
-                            ng-options="director.director_id as director.director_name for director in directors" required></select>  
-                        <label  ng-show="frmCU.ddlDirectors.$error.required && showErrorMessages"
-                                             class="validationError">No director selected</label>     
-                    </div>       
-                    <div class="offset-sm-2 col-sm-10">
-                        <input  type="hidden"  name="ctrl" value="movie" >
-                        <button class="btn btn-primary" type="submit" ng-click="addMovie()">Create Movie</button>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <input  type="number" ng-model="oddNumber" name="oddNumber"  odd>
-                    <label  ng-show="frmCU.oddNumber.$error.odd  && showErrorMessages"
-                              class="validationError">odd error</label>     
-                </div>
-                <div class="form-group row">
-                    <input  type="text" ng-model="duplicateMovie" name="duplicateMovie" class="validation_errors">
-                    <label  ng-show="duplicateFound"  class="validationError">dupli error</label>     
-                </div>
-                <div class=message>{{message}}</div>
-            </form>
+<div class="container" ng-controller="productsCtrl">
+    <h2>Create Movie</h2> 
+    <form name="frmCU" enctype="multipart/form-data" novalidate>
+        <div class="form-group row">
+            <label for="movieName" class="col-xs-2 col-sm-2 col-md-3 col-lg-3 col-form-label">Movie Name</label>
+            <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9" >
+                <input type="text" class="form-control" ng-model="movieName" name="movieName"
+                        placeholder="Enter new Movie name" maxlength="50" required>
+                        <label ng-show="frmCU.movieName.$error.required && showErrorMessages"
+                                                class="validationError" >Movie Name is required</label>       
+            </div>
         </div>
-    </body>
-</html>
+        <div class="form-group row">
+            <label for="DirectorDDL" class="col-xs-2 col-sm-2 col-md-3 col-lg-3 col-form-label">Movie Director</label>
+            <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
+                <select ng-model="selectedDirector"  class="form-control" name="ddlDirectors"
+                    ng-options="director.director_id as director.director_name for director in directors" required></select>  
+                <label  ng-show="frmCU.ddlDirectors.$error.required && showErrorMessages"
+                                        class="validationError">No director selected</label>     
+            </div>       
+            <div class="offset-sm-2 col-sm-10">
+                <input  type="hidden"  name="ctrl" value="movie" >
+                <button class="btn btn-primary" type="submit" ng-click="addMovie()">Create Movie</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <input  type="number" ng-model="oddNumber" name="oddNumber"  odd>
+            <label  ng-show="frmCU.oddNumber.$error.odd  && showErrorMessages"
+                        class="validationError">odd error</label>     
+        </div>
+        <div class="form-group row">
+            <input  type="text" ng-model="duplicateMovie" name="duplicateMovie" class="validation_errors">
+            <label  ng-show="duplicateFound"  class="validationError">dupli error</label>     
+        </div>
+        <div class=message>{{message}}</div>
+    </form>
+</div>

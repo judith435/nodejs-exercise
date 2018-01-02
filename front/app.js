@@ -1,1 +1,1 @@
-var hwApp = angular.module('homework-app', []);
+var hwApp = angular.module('homework-app', ['ngRoute']);

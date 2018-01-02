@@ -1,4 +1,4 @@
-hwApp.controller('productsCtrl', function handleProducts($scope, dataService) {
+hwApp.controller('showProductsCtrl', function handleProducts($scope, dataService) {
     alert('in productsCtrl');
     getProducts();
     

@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html  ng-app='homework-app'>
-<head>
-    <title>Show Products</title>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>  
-    <script src="../node_modules/angular/angular.min.js"></script>
-    <!-- site less file placed after bootstrap files to enable overriding of bootstrap styles --> 
-    <link rel="stylesheet/less" type="text/css" href="styles/style.less" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
-</head>
-<body ng-controller="productsCtrl">
-    <div id="navigation-bar"></div>
-    <section class='container'>
-        <h2 class="extra-padding">Products</h2>
-        <div id="productsTable" class="regular_size_table">
-            <table class="table table-hover table-responsive table-bordered">
-                <thead>
-                    <tr>
-                        <th class="text-center">Product ID</th>
-                        <th class="text-center">Product Name</th>
-                        <th class="text-center">Company Name</th>
-                        <th class="text-center">Category Name</th>
-                        <th class="text-center">Quantity Per Unit</th>
-                        <th class="text-center">Unit Price</th>
-                        <th class="text-center">Units In Stock</th>
-                        <!-- <th class="text-center">Movie Image</th> -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="product in products"> 
-                        <td class="text-right">{{product.ProductID}}</td>
-                        <td class="text-left">{{product.ProductName}}</td>
-                        <td class="text-right">{{product.CompanyName}}</td>
-                        <td class="text-left">{{product.CategoryName}}</td>
-                        <td class="text-left">{{product.QuantityPerUnit}}</td>
-                        <td class="text-left">{{product.UnitPrice}}</td>
-                        <td class="text-left">{{product.UnitsInStock}}</td>
-                        <!-- <td class="text-left movie-image-link"></td> -->
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-    <script src="app.js"></script>
-    <script src="controller.js"></script>
-    <script src="service.js"></script>
-</body>        
+    <head>
+        <title>Show Products</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>  
+        <script src="../node_modules/angular/angular.min.js"></script>
+        <script src="../node_modules/angular-route/angular-route.min.js"></script>
+        <!-- site less file placed after bootstrap files to enable overriding of bootstrap styles --> 
+        <link rel="stylesheet/less" type="text/css" href="styles/style.less" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+        <script src="app.js"></script>
+        <script src="config.js"></script>
+        <script src="controller.js"></script>
+        <script src="service.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav>     
+                <a href='#'>Home</a>
+                <a href='#!showProducts'>Show Products</a>
+                <a href='#!addProduct'>Add Product</a>
+            </nav>
+        </header>
+            <div ng-view></div>
+        <!-- <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Northwind Management</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#!">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html">Show Products</a></li>
+                            <li><a href="#!showProduct">Show Products</a></li>
+                            <li><a href="#!addProduct">Add Product</a></li>
+                            <li><a href="addProduct.html">Create Product</a></li> 
+                            <li><a href="../movie/update.html">Update Movie</a></li> 
+                            <li><a href="../movie/delete.html">Delete Movie</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Suppliers
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html">Show Suppliers</a></li>
+                            <li><a href="addProduct.html">Create Supplier</a></li>
+                            <li><a href="../director/update.html">Update Director</a></li>
+                            <li><a href="../director/delete.html">Delete Director</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav> 
+        <div ng-view></div> -->
+    </body>
 </html>
-

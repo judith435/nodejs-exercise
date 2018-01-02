@@ -1,0 +1,31 @@
+<div class='container' ng-controller="showProductsCtrl">
+    <h2 class="extra-padding">Products</h2>
+    <div id="productsTable" class="regular_size_table">
+        <table class="table table-hover table-responsive table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center">Product ID</th>
+                    <th class="text-center">Product Name</th>
+                    <th class="text-center">Company Name</th>
+                    <th class="text-center">Category Name</th>
+                    <th class="text-center">Quantity Per Unit</th>
+                    <th class="text-center">Unit Price</th>
+                    <th class="text-center">Units In Stock</th>
+                    <!-- <th class="text-center">Movie Image</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in products"> 
+                    <td class="text-right">{{product.ProductID}}</td>
+                    <td class="text-left">{{product.ProductName}}</td>
+                    <td class="text-right">{{product.CompanyName}}</td>
+                    <td class="text-left">{{product.CategoryName}}</td>
+                    <td class="text-left">{{product.QuantityPerUnit}}</td>
+                    <td class="text-left">{{product.UnitPrice}}</td>
+                    <td class="text-left">{{product.UnitsInStock}}</td>
+                    <!-- <td class="text-left movie-image-link"></td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
