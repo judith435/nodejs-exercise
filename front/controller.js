@@ -4,9 +4,8 @@ hwApp.controller('productsCtrl', function handleProducts($scope, dataService) {
     
     function getProducts() {
         dataService.getProducts(function(products) {
-            alert("after getProducts" + JSON.stringify(products));
-
-            $scope.products = products.data;
+            alert("after getProducts" + JSON.stringify(products.data));
+            $scope.products = products.data[0];
         });
     }
 

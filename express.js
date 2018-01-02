@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require("body-parser");
+var dal = require('./sql.js');
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,19 +17,24 @@ app.use(function(req, res, next) {
 // Listen to '/' in GET Verb methods - serve the main Angular index.html file
 app.get('/', function (req, res, next) {
     console.log(req.body); // get the body data of get
-    res.end();
+    res.end("in no parms");
 });
 
 // Listen to '/product' in GET Verb methods
 app.get('/product', function (req, res) {
     console.log(req.body); // get the body data of get
-    res.end("in producti");
+    dal.getCars(function(err, cars) {
+        if (err) {
+            res.end('Sorry Dude!');
+        }
+        res.end(JSON.stringify(cars));
+    })
 });
 
 // Listen to '/product' in POST Verb methods
  app.post('/product', function (req, res) {
      console.log(req.body); // get the body data of post
-     res.end();
+     res.end("in post producti");
  })
 
 

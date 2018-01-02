@@ -1,34 +1,47 @@
+// Step 1
 const mysql = require('mysql');
+const fs = require('fs');
 
-const con = mysql.createConnection(
-    // connection details
-    {
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'test'
-    }
-);
+function getCars(callback) {
+    // Step 2
+    const con = mysql.createConnection(
+        // connection details
+        {
+            host: 'localhost',
+            user: 'root',
+            password: '',
+            database: 'northwind'
+        }
+    );
 
-// 3.cconnect
-con.connect(function (err) {
-    if (err) {
-        console.log('Error connecting to DB:' + err);
-        return;
-    }
-    console.log('Connected');
-});
-
-// 4. crud : insert
-// use backtick `` for free text
-con.query(`select * from cars`, function (err, rows) {
-    if (err) {
-        throw err;
-    }
-    rows.forEach(function (row) {
-        arr.push(row);
-        console.log(row.model);
+    // 3.cconnect
+    con.connect(function (err) {
+        if (err) {
+            console.log('Error connecting to DB:' + err);
+            return;
+        }
+        console.log('Connected');
     });
-    console.log(arr);
-});
-con.end();
+
+    // 4. crud : insert
+    // use backtick `` for free text
+    con.query('CALL get_products()',function(err, rows){
+   // con.query(`select * from products`, function (err, rows) {
+        if (err) {
+            // error log
+            // fs.readFile()
+            callback(err);
+
+        }
+        // con.end();
+        callback(null, rows);
+        // console.log(JSON.stringify(rows,null,4));
+/*        rows.forEach(function (row) {
+            console.log(row.model);
+        });*/
+    });
+
+   
+}
+
+module.exports.getCars = getCars;
