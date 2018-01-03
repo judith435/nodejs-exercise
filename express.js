@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require("body-parser");
-var dal = require('./sql.js');
+var dalGetProds = require('./sqlProduct.js');
+var dalGetSuppl = require('./sqlSupplier.js');
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,11 +24,22 @@ app.get('/', function (req, res, next) {
 // Listen to '/product' in GET Verb methods
 app.get('/product', function (req, res) {
     console.log(req.body); // get the body data of get
-    dal.getCars(function(err, cars) {
+    dalGetProds.getProducts(function(err, products) {
         if (err) {
             res.end('Sorry Dude!');
         }
-        res.end(JSON.stringify(cars));
+        res.end(JSON.stringify(products));
+    })
+});
+
+// Listen to '/product' in GET Verb methods
+app.get('/supplier', function (req, res) {
+    console.log(req.body); // get the body data of get
+    dalGetSuppl.getSuppliers(function(err, suppliers) {
+        if (err) {
+            res.end('Sorry Dude!');
+        }
+        res.end(JSON.stringify(suppliers));
     })
 });
 

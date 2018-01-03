@@ -2,7 +2,7 @@
 const mysql = require('mysql');
 const fs = require('fs');
 
-function getCars(callback) {
+function getProducts(callback) {
     // Step 2
     const con = mysql.createConnection(
         // connection details
@@ -44,4 +44,4 @@ function getCars(callback) {
    
 }
 
-module.exports.getCars = getCars;
+module.exports.getProducts = getProducts;
