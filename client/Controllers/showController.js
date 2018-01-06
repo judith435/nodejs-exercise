@@ -3,7 +3,9 @@ hwApp.controller('showProductsCtrl', function handleProducts($scope, dataService
     
     function getProducts() {
         dataService.getProducts(function(products) {
-            $scope.products = products.data[0];
+            const prods = products.data[0];
+            $scope.keys = Object.keys(prods[0]);
+            $scope.products = (products.data[0]);
         });
     }
 });
@@ -15,7 +17,9 @@ hwApp.controller('showSuppliersCtrl', function handleSuppliers($scope, dataServi
     
     function getSuppliers() {
         dataService.getSuppliers(function(suppliers) {
-            $scope.suppliers = suppliers.data[0];
+            const suppl = suppliers.data[0];
+            $scope.keys = Object.keys(suppl[0]);
+            $scope.suppliers = (suppliers.data[0]);
         });
     }
 });
