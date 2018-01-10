@@ -4,10 +4,10 @@ hwApp.config(function($routeProvider) {
         templateUrl : 'templates/home.html'
     })
     .when('/showProducts', {
-        templateUrl: 'products/products.view.html'
+        templateUrl: 'productsView/products.html'
     })
     .when('/addProduct', {
-        templateUrl: 'templates/addProduct.html'
+        templateUrl: 'productsAdd/addProduct.html'
     })
     .when('/showSuppliers', {
         templateUrl: 'suppliers/suppliers.view.html'

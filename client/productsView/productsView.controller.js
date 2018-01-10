@@ -9,8 +9,3 @@ hwApp.controller('showProductsCtrl', function handleProducts($scope, dataService
         });
     }
 });
-
-
-hwApp.controller('addProductsCtrl', function handleProducts($scope, dataService) {
-
-});
