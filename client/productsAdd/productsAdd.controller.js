@@ -3,10 +3,11 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
      const frmAddProduct = [
         {
             name:'productName',
+            content: '',
             header: 'Product Name',
             required: true,
             type: 'text',
-            errorShow: 'frmCU.productName.$error.required',
+            errorShow: false,
             validation: function() {
 
             }
@@ -15,8 +16,9 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
             name:'supplier',
             header: 'Supplier',
             required: true,
+            content: '',
             type: 'select',
-            errorShow: 'frmCU.supplier.$error.required',
+            errorShow: false,
             options: [
                 {
                     value: 1,
@@ -71,11 +73,13 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
     $scope.inputFields = frmAddProduct;
 
 
-    $scope.addProduct = function()  {
-        frmAddProduct.forEach(function(field) { 
-            alert(field.required)  ; 
+    $scope.addProduct = function(inputi)  {
+        frmAddProduct.forEach(function(field) {
+           var toto =  field['name'];
+          // var lala = $scope.toto;
+            $scope.showErrorMessages = true;//field.required && field === '';
         });
-
+        if ($scope.showErrorMessages) { return; }
         // if ($scope.frmCU.$invalid){
         //      $scope.showErrorMessages = true;
         //      return;
