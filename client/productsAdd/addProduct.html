@@ -1,13 +1,35 @@
 <div class="container" ng-controller="addProductsCtrl">
     <h2>Add Product</h2> 
-    <form name="frmCU" enctype="multipart/form-data" novalidate>
-        <div ng-repeat="field in inputFields">
+    <form name="frmAddProduct" enctype="multipart/form-data" novalidate>
+        <div ng-repeat="field in form.fields">  
             <div class="form-group row">
                 <label for={{field}} class="col-xs-2 col-sm-2 col-md-3 col-lg-3 col-form-label">{{field.header}}</label>
                 <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9" >
+                    <!-- {type: "text", name: "firstname", label: "Name" , required: true, data:""}, -->
+                    <!-- <div ng-if="field.type=='text'" class="form-group">
+                        <label class="col-sm-2 control-label">{{field.label}}</label>
+                        <div class="col-sm-6">
+                            <input type="{{ field.type }}" dynamic-name="field.name" id="{{field.name}}" data-ng-model="field.data"  class="form-control" required/>
+                            <span  data-ng-show=" {{'form.'+field.name+'.$dirty && form.'+field.name+'.$error.required'}}">Required!</span>
+                        </div>
+                    </div> -->
+                    
+                    <!-- <input type="{{ field.type }}"  id="{{field.name}}"
+                                      data-ng-model="field.data"  class="form-control" required/>
+                    <span  data-ng-show=" {{'form.'+field.name+'.$dirty && form.'+field.name+'.$error.required'}}">Required!</span> -->
 
-                    <input ng-if="field.type == 'text'" ng-attr-type={{field.type}} class="form-control" ng-model=inputFields[field].name name={{field.name}}
-                        placeholder="{{field.name}}" maxlength="50" required ng-value=inputFields[field].content>
+                    <input ng-if="field.type == 'text'" type={{field.type}} class="form-control" 
+                            ng-model=field.content   placeholder="{{field.header}}" maxlength="50" >
+                    <label  ng-show="'frmAddProduct.' + field.name + '$error.required' " 
+                        class="validationError">{{field.header}}   Required!</label>     
+<!-- 
+     ng-show="'frmAddProduct.' + field.name + '$error.required' && showErrorMessages" 
+    frmCU.movieName.$error.required 
+    
+    
+    <input ng-if="field.type == 'text'" ng-attr-type={{field.type}} class="form-control" 
+                            ng-model=inputFields[field].name name={{field.name}}
+                        placeholder="{{field.name}}" maxlength="50" required ng-value=inputFields[field].content> -->
                     <div  ng-if="field.type == 'select'" >
                         <select class="form-control" ng-model=inputFields[field].name name={{field.name}}>
                             <option value={{option.value}} ng-repeat="option in field.options">
@@ -16,8 +38,8 @@
                         </select>
                     </div>
                        
-                    <label ng-show="showErrorMessages"
-                            class="validationError" >{{field.name}} is required</label>       
+                    <!-- <label ng-show="showErrorMessages"
+                            class="validationError" >{{field.name}} is required</label>        -->
                 </div>
             </div>
         </div>
@@ -34,7 +56,7 @@
         </div>
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-10">
-                <button class="btn btn-primary" type="submit" ng-click="addProduct(inputFields)">Add Product</button>
+                <button class="btn btn-primary" type="submit" ng-click="addProduct()">Add Product</button>
             </div>
         </div>
         <div class="form-group row">

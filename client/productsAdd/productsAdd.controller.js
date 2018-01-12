@@ -1,68 +1,39 @@
 hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
     $scope.showErrorMessages = false;
-     const frmAddProduct = [
-        {
-            name:'productName',
-            content: '',
-            header: 'Product Name',
-            required: true,
-            type: 'text',
-            errorShow: false,
-            validation: function() {
+    $scope.form = {
+        name : "frmAddProduct", 
+        fields :
+        [
+            {
+                name:'productName',
+                content: '',
+                header: 'Product Name',
+                required: true,
+                type: 'text',
+                errorFound: false,
+                validation: function() {
 
-            }
-        },
-        {
-            name:'supplier',
-            header: 'Supplier',
-            required: true,
-            content: '',
-            type: 'select',
-            errorShow: false,
-            options: [
-                {
-                    value: 1,
-                    text: 'hello1'
-                },
-                {
-                    value: 2,
-                    text: 'hello2'
                 }
-            ]
-        }
-    ]
-
-    // const frmAddProduct = {
-    //     productName: {
-    //         name:'productName',
-    //         header: 'Product Name',
-    //         required: true,
-    //         type: 'text',
-    //         errorShow: 'frmCU.productName.$error.required',
-    //         validation: function() {
-
-    //         }
-    //     },
-    //     supplier: {
-    //         name:'supplier',
-    //         header: 'Supplier',
-    //         required: true,
-    //         type: 'select',
-    //         errorShow: 'frmCU.supplier.$error.required',
-    //         options: [
-    //             {
-    //                 value: 1,
-    //                 text: 'hello1'
-    //             },
-    //             {
-    //                 value: 2,
-    //                 text: 'hello2'
-    //             }
-    //         ]
-    //         // type: {
-    //         //     name: 'select',
-    //         //     data: []
-    //         // }
+            },
+            {
+                name:'supplier',
+                header: 'Supplier',
+                required: true,
+                content: '',
+                type: 'select',
+                options: [
+                    {
+                        value: 1,
+                        text: 'hello1'
+                    },
+                    {
+                        value: 2,
+                        text: 'hello2'
+                    }
+                ]
+            }
+        ]
+    }
     //     }//,
     //     // isOpen: {
     //     //     label: 'is open',
@@ -70,14 +41,15 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
     //     //     type: 'checkbox'
     //     // }
     // }
-    $scope.inputFields = frmAddProduct;
 
-
-    $scope.addProduct = function(inputi)  {
-        frmAddProduct.forEach(function(field) {
-           var toto =  field['name'];
-          // var lala = $scope.toto;
-            $scope.showErrorMessages = true;//field.required && field === '';
+    $scope.addProduct = function()  {
+        var tata =$scope.form;//scope.form["fields"][0]["name"]
+        //scope.form["fields"][0]["name"]
+        $scope.form.fields.forEach(function(field) {
+            if (field['content'] == '' && field.required){
+                field['errorFound'] = true;
+                $scope.showErrorMessages = true; 
+           }
         });
         if ($scope.showErrorMessages) { return; }
         // if ($scope.frmCU.$invalid){
