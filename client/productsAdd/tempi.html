@@ -6,7 +6,7 @@
             <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9" >
                 <input type="text" class="form-control" ng-model="movieName" name="movieName"
                         placeholder="Enter new Movie name" maxlength="50" required>
-                        <label ng-show="frmCU.movieName.$error.required && showErrorMessages"
+                        <label ng-show="frmCU.movieName.$error.required && errorsFound"
                                                 class="validationError" >Movie Name is required</label>       
             </div>
         </div>
@@ -15,7 +15,7 @@
             <div class="col-xs-10 col-sm-10 col-md-9 col-lg-9">
                 <select ng-model="selectedDirector"  class="form-control" name="ddlDirectors"
                     ng-options="director.director_id as director.director_name for director in directors" required></select>  
-                <label  ng-show="frmCU.ddlDirectors.$error.required && showErrorMessages"
+                <label  ng-show="frmCU.ddlDirectors.$error.required && errorsFound"
                                         class="validationError">No director selected</label>     
             </div>       
             <div class="offset-sm-2 col-sm-10">
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group row">
             <input  type="number" ng-model="oddNumber" name="oddNumber"  odd>
-            <label  ng-show="frmCU.oddNumber.$error.odd  && showErrorMessages"
+            <label  ng-show="frmCU.oddNumber.$error.odd  && errorsFound"
                         class="validationError">odd error</label>     
         </div>
         <div class="form-group row">

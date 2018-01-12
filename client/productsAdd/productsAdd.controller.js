@@ -1,5 +1,5 @@
 hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
-    $scope.showErrorMessages = false;
+    $scope.errorsFound = false;
     $scope.form = {
         name : "frmAddProduct", 
         fields :
@@ -7,17 +7,32 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
             {
                 name:'productName',
                 content: '',
-                header: 'Product Name',
+                description: 'Product Name',
                 required: true,
                 type: 'text',
+                maxlength: 40,
                 errorFound: false,
+                errorMessage: '',
+                validation: function() {
+
+                }
+            },
+            {
+                name:'quantityPerUnit',
+                content: '',
+                description: 'Quantity per Unit',
+                required: true,
+                type: 'text',
+                maxlength: 20,
+                errorFound: false,
+                errorMessage: '',
                 validation: function() {
 
                 }
             },
             {
                 name:'supplier',
-                header: 'Supplier',
+                description: 'Supplier',
                 required: true,
                 content: '',
                 type: 'select',
@@ -46,21 +61,18 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
         var tata =$scope.form;//scope.form["fields"][0]["name"]
         //scope.form["fields"][0]["name"]
         $scope.form.fields.forEach(function(field) {
-            if (field['content'] == '' && field.required){
-                field['errorFound'] = true;
-                $scope.showErrorMessages = true; 
-           }
+            field['errorMessage'] = field.content === '' && field.required ? field['description'] + ' required' : '';
+            // if (field.content == '' && field.required){
+            //     field.errorMessage = field.Description + ' required';
+            //     $scope.errorsFound = true;
+            // }
         });
-        if ($scope.showErrorMessages) { return; }
-        // if ($scope.frmCU.$invalid){
-        //      $scope.showErrorMessages = true;
-        //      return;
-        // }
+        if ($scope.errorsFound) { return; }
 
         // // validationService.setSelectedDirector($scope.selectedDirector);
         // if (!validationService.checkDuplicateMovie($scope.selectedDirector))
         // {
-        //     $scope.showErrorMessages = true;
+        //     $scope.errorsFound = true;
         //     $scope.duplicateFound = true;
         //     return;
         // } 
@@ -73,7 +85,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
         // movieService.addMovie(movie, function(response) {
         //     $scope.message = (JSON.stringify(response.data));
         // });
-        $scope.showErrorMessages = false;
+        $scope.errorsFound = false;
         $scope.duplicateFound = false;
     }  
 
