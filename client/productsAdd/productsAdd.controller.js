@@ -1,5 +1,5 @@
 hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
-    $scope.errorsFound = false;
+    fillDDLs();
     $scope.form = {
         name : "frmAddProduct", 
         fields :
@@ -18,6 +18,22 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
                 }
             },
             {
+                name:'supplier',
+                description: 'Supplier',
+                required: true,
+                content: '',
+                type: 'select',
+                options: [ ]
+            },
+            {
+                name:'category',
+                description: 'Category',
+                required: true,
+                content: '',
+                type: 'select',
+                options: []
+            },            
+            {
                 name:'quantityPerUnit',
                 content: '',
                 description: 'Quantity per Unit',
@@ -25,50 +41,58 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
                 type: 'text',
                 maxlength: 20,
                 errorFound: false,
-                errorMessage: '',
-                validation: function() {
-
-                }
+                errorMessage: ''
             },
             {
-                name:'supplier',
-                description: 'Supplier',
-                required: true,
+                name:'unitPrice',
                 content: '',
-                type: 'select',
-                options: [
-                    {
-                        value: 1,
-                        text: 'hello1'
-                    },
-                    {
-                        value: 2,
-                        text: 'hello2'
-                    }
-                ]
-            }
+                description: 'Unit Price',
+                required: true,
+                type: 'number',
+                min: 0,
+                step: "0.0001",
+                errorFound: false,
+                errorMessage: ''
+            },
+            {
+                name:'discontinued',
+                content: '',
+                description: 'Discontinued',
+                required: true,
+                type: 'checkbox',
+                value: false,
+                errorFound: false,
+                errorMessage: ''
+            },
         ]
     }
-    //     }//,
+    //     }//,   `QuantityPerUnit`
     //     // isOpen: {
     //     //     label: 'is open',
     //     //     required: false,
     //     //     type: 'checkbox'
     //     // }
     // }
+    function fillDDLs() {
+        dataService.getSuppliersForDDL(function(suppliers) {
+            index =  $scope.form.fields.findIndex(x => x.name == "supplier");
+            $scope.form.fields[index].options = suppliers.data[0];
+        });
+
+        dataService.getCategoriesForDDL(function(categories) {
+            index =  $scope.form.fields.findIndex(x => x.name == "category");
+            $scope.form.fields[index].options = categories.data[0];
+        });
+    }
 
     $scope.addProduct = function()  {
-        var tata =$scope.form;//scope.form["fields"][0]["name"]
-        //scope.form["fields"][0]["name"]
+        $scope.errorsFound = false;
         $scope.form.fields.forEach(function(field) {
-            field['errorMessage'] = field.content === '' && field.required ? field['description'] + ' required' : '';
-            // if (field.content == '' && field.required){
-            //     field.errorMessage = field.Description + ' required';
-            //     $scope.errorsFound = true;
-            // }
+            field.errorMessage = field.content === '' && field.required ? field.description + ' required' : '';
+            $scope.errorsFound = field.errorMessage !== '' || $scope.errorsFound;
         });
         if ($scope.errorsFound) { return; }
-
+        alert ('no errors found!!!');
         // // validationService.setSelectedDirector($scope.selectedDirector);
         // if (!validationService.checkDuplicateMovie($scope.selectedDirector))
         // {

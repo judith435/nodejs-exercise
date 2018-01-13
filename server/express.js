@@ -2,6 +2,9 @@ var express = require('express');
 var bodyParser = require("body-parser");
 var dalGetProds = require('./sqlProduct.js');
 var dalGetSuppl = require('./sqlSupplier.js');
+var dalGetSupplDDL = require('./sqlSupplierDDL.js');
+var dalGetCategorylDDL = require('./sqlCategoryDDL.js');
+
 var fs = require('fs');
 
 var app = express();
@@ -42,7 +45,6 @@ app.get('/product', function (req, res) {
     })
 });
 
-// Listen to '/product' in GET Verb methods
 app.get('/supplier', function (req, res) {
     console.log(req.body); // get the body data of get
     dalGetSuppl.getSuppliers(function(err, suppliers) {
@@ -52,6 +54,27 @@ app.get('/supplier', function (req, res) {
         res.end(JSON.stringify(suppliers));
     })
 });
+
+app.get('/supplierDDL', function (req, res) {
+    console.log(req.body); // get the body data of get
+    dalGetSupplDDL.getSuppliersForDDL(function(err, suppliers) {
+        if (err) {
+            res.end('Sorry Dude!: ' + err);
+        }
+        res.end(JSON.stringify(suppliers));
+    })
+});
+
+app.get('/categoryDDL', function (req, res) {
+    console.log(req.body); // get the body data of get
+    dalGetCategorylDDL.getCategoriesForDDL(function(err, categories) {
+        if (err) {
+            res.end('Sorry Dude!: ' + err);
+        }
+        res.end(JSON.stringify(categories));
+    })
+});
+
 
 // Listen to '/product' in POST Verb methods
  app.post('/product', function (req, res) {
