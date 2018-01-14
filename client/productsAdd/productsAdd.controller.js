@@ -23,6 +23,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
                 required: true,
                 content: '',
                 type: 'select',
+                errorMessage: '',
                 options: [ ]
             },
             {
@@ -31,6 +32,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
                 required: true,
                 content: '',
                 type: 'select',
+                errorMessage: '',
                 options: []
             },            
             {
@@ -58,29 +60,19 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
                 name:'discontinued',
                 content: '',
                 description: 'Discontinued',
-                required: true,
                 type: 'checkbox',
                 value: false,
-                errorFound: false,
-                errorMessage: ''
             },
         ]
     }
-    //     }//,   `QuantityPerUnit`
-    //     // isOpen: {
-    //     //     label: 'is open',
-    //     //     required: false,
-    //     //     type: 'checkbox'
-    //     // }
-    // }
     function fillDDLs() {
         dataService.getSuppliersForDDL(function(suppliers) {
-            index =  $scope.form.fields.findIndex(x => x.name == "supplier");
+            index =  $scope.form.fields.findIndex(x => x.name == 'supplier');
             $scope.form.fields[index].options = suppliers.data[0];
         });
 
         dataService.getCategoriesForDDL(function(categories) {
-            index =  $scope.form.fields.findIndex(x => x.name == "category");
+            index =  $scope.form.fields.findIndex(x => x.name == 'category');
             $scope.form.fields[index].options = categories.data[0];
         });
     }
@@ -88,7 +80,12 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
     $scope.addProduct = function()  {
         $scope.errorsFound = false;
         $scope.form.fields.forEach(function(field) {
-            field.errorMessage = field.content === '' && field.required ? field.description + ' required' : '';
+            if(field.type === 'number') {
+                field.errorMessage = field.content === null && field.required ? field.description + ' required' : '';
+            }
+            else {
+                field.errorMessage = field.content === '' && field.required ? field.description + ' required' : '';
+            }
             $scope.errorsFound = field.errorMessage !== '' || $scope.errorsFound;
         });
         if ($scope.errorsFound) { return; }
