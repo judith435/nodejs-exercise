@@ -1,9 +1,12 @@
 var express = require('express');
 var bodyParser = require("body-parser");
-var dalGetProds = require('./sqlProduct.js');
+var dalGetProds = require('./productAPI.js');
 var dalGetSuppl = require('./sqlSupplier.js');
 var dalGetSupplDDL = require('./sqlSupplierDDL.js');
 var dalGetCategorylDDL = require('./sqlCategoryDDL.js');
+
+var productAPI = require('./productAPI.js');
+
 
 var fs = require('fs');
 
@@ -22,6 +25,7 @@ app.use(express.static('../node_modules'));
 // Express - to serve the client
 // body parser - To handle the data of post
 
+
 // Listen to '/' in GET Verb methods - serve the main Angular index.html file
 app.get('/', function (req, res) {
 
@@ -34,16 +38,21 @@ app.get('/', function (req, res) {
    
 });
 
-// Listen to '/product' in GET Verb methods
-app.get('/product', function (req, res) {
-    console.log(req.body); // get the body data of get
-    dalGetProds.getProducts(function(err, products) {
-        if (err) {
-            res.end('Sorry Dude!');
-        }
-        res.end(JSON.stringify(products));
-    })
-});
+// app.all('/product', function (req, res, next) {
+//     console.log('Accessing the secret section ...')
+// })
+
+ app.get('/product', productAPI.getProducts);
+//  app.get('/product', function (req, res) {
+//     console.log(req.body); // get the body data of get
+//     dalGetProds.getProducts(function(err, products) {
+//         if (err) {
+//             res.end('Sorry Dude!');
+//         }
+//         res.end(JSON.stringify(products));
+//     })
+// });
+
 
 app.get('/supplier', function (req, res) {
     console.log(req.body); // get the body data of get
@@ -54,6 +63,9 @@ app.get('/supplier', function (req, res) {
         res.end(JSON.stringify(suppliers));
     })
 });
+
+
+
 
 app.get('/supplierDDL', function (req, res) {
     console.log(req.body); // get the body data of get

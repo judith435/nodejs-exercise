@@ -1,9 +1,6 @@
-// Step 1
 const mysql = require('mysql');
-const fs = require('fs');
 
-function getProducts(callback) {
-    // Step 2
+function executeQuery(sp, callback) {
     const con = mysql.createConnection(
         // connection details
         {
@@ -25,23 +22,17 @@ function getProducts(callback) {
 
     // 4. crud : insert
     // use backtick `` for free text
-    con.query('CALL get_products()',function(err, rows){
-   // con.query(`select * from products`, function (err, rows) {
+    con.query('Call'+ sp + '()', function (err, rows) {
         if (err) {
-            // error log
-            // fs.readFile()
             callback(err);
-
+        } else {
+            callback(null, rows)
+            /*rows.forEach(function (row) {
+                arr.push(row);
+            });*/
         }
-        // con.end();
-        callback(null, rows);
-        // console.log(JSON.stringify(rows,null,4));
-/*        rows.forEach(function (row) {
-            console.log(row.model);
-        });*/
     });
-
-   
+    con.end();
 }
 
-module.exports.getProducts = getProducts;
+module.exports.executeQuery = executeQuery;

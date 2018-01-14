@@ -1,8 +1,8 @@
-hwApp.controller('showSuppliersCtrl', function handleSuppliers($scope, dataService) {
+hwApp.controller('showSuppliersCtrl', function handleSuppliers($scope, supplierService) {
     getSuppliers();
     
     function getSuppliers() {
-        dataService.getSuppliers(function(suppliers) {
+        supplierService.getSuppliers(function(suppliers) {
             const suppl = suppliers.data[0];
             $scope.keys = Object.keys(suppl[0]);
             $scope.suppliers = (suppliers.data[0]);

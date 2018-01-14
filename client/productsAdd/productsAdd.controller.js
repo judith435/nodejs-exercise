@@ -1,4 +1,4 @@
-hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
+hwApp.controller('addProductsCtrl', function addProduct($scope, productService, supplierService) {
     fillDDLs();
     $scope.form = {
         name : "frmAddProduct", 
@@ -73,12 +73,12 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
         ]
     }
     function fillDDLs() {
-        dataService.getSuppliersForDDL(function(suppliers) {
+        supplierService.getSuppliersForDDL(function(suppliers) {
             index =  $scope.form.fields.findIndex(x => x.name == 'supplier');
             $scope.form.fields[index].options = suppliers.data[0];
         });
 
-        dataService.getCategoriesForDDL(function(categories) {
+        productService.getCategoriesForDDL(function(categories) {
             index =  $scope.form.fields.findIndex(x => x.name == 'category');
             $scope.form.fields[index].options = categories.data[0];
         });
@@ -111,9 +111,9 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
 
         };
 
-        // movieService.addMovie(movie, function(response) {
-        //     $scope.message = (JSON.stringify(response.data));
-        // });
+        productService.updateNorthwind(product, function(response) {
+            $scope.message = (JSON.stringify(response.data));
+        });
         $scope.errorsFound = false;
         $scope.duplicateFound = false;
     }  
