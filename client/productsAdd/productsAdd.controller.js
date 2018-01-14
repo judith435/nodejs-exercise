@@ -6,6 +6,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
         [
             {
                 name:'productName',
+                index: 0,
                 content: '',
                 description: 'Product Name',
                 required: true,
@@ -19,6 +20,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
             },
             {
                 name:'supplier',
+                index: 1,
                 description: 'Supplier',
                 required: true,
                 content: '',
@@ -28,6 +30,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
             },
             {
                 name:'category',
+                index: 2,
                 description: 'Category',
                 required: true,
                 content: '',
@@ -37,6 +40,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
             },            
             {
                 name:'quantityPerUnit',
+                index: 3,
                 content: '',
                 description: 'Quantity per Unit',
                 required: true,
@@ -47,6 +51,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
             },
             {
                 name:'unitPrice',
+                index: 4,
                 content: '',
                 description: 'Unit Price',
                 required: true,
@@ -58,6 +63,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
             },
             {
                 name:'discontinued',
+                index: 5,
                 content: '',
                 description: 'Discontinued',
                 type: 'checkbox',
@@ -81,7 +87,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
         $scope.errorsFound = false;
         $scope.form.fields.forEach(function(field) {
             if(field.type === 'number') {
-                field.errorMessage = field.content === null && field.required ? field.description + ' required' : '';
+                field.errorMessage = (field.content === null || field.content === '')  && field.required ? field.description + ' required' : '';
             }
             else {
                 field.errorMessage = field.content === '' && field.required ? field.description + ' required' : '';
@@ -97,12 +103,17 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
         //     $scope.duplicateFound = true;
         //     return;
         // } 
+        let index = 0;
+        product = {
+            productName: $scope.form.fields[index].content,
+            supplier: $scope.form.fields[++index].content,
+            category: $scope.form.fields[++index].content,
+            quantityPerUnit: $scope.form.fields[++index].content,
+            unitPrice: $scope.form.fields[++index].content,
+            discontinued: $scope.form.fields[++index].content
 
-        // movie = {
-        //     ctrl: "movie",
-        //     movie_name: $scope.movieName,
-        //     director_id: $scope.selectedDirector
-        // };
+        };
+
         // movieService.addMovie(movie, function(response) {
         //     $scope.message = (JSON.stringify(response.data));
         // });
