@@ -14,9 +14,9 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
                 maxlength: 40,
                 errorFound: false,
                 errorMessage: '',
-                validation: function() {
+                // validation: function() {
 
-                }
+                // }
             },
             {
                 name:'supplier',
@@ -65,6 +65,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
                 name:'discontinued',
                 index: 5,
                 content: '',
+                required: false,
                 description: 'Discontinued',
                 type: 'checkbox',
                 value: false,
@@ -86,12 +87,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
     $scope.addProduct = function()  {
         $scope.errorsFound = false;
         $scope.form.fields.forEach(function(field) {
-            if(field.type === 'number') {
-                field.errorMessage = (field.content === null || field.content === '')  && field.required ? field.description + ' required' : '';
-            }
-            else {
-                field.errorMessage = field.content === '' && field.required ? field.description + ' required' : '';
-            }
+            field.errorMessage = (!field.content)  && field.required ? field.description + ' required' : '';
             $scope.errorsFound = field.errorMessage !== '' || $scope.errorsFound;
         });
         if ($scope.errorsFound) { return; }
@@ -105,6 +101,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, dataService) {
         // } 
         let index = 0;
         product = {
+            tableName: 'products',
             productName: $scope.form.fields[index].content,
             supplier: $scope.form.fields[++index].content,
             category: $scope.form.fields[++index].content,
