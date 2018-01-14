@@ -19,6 +19,23 @@ USE `northwind` ;
 USE `northwind` ;
 
 -- -----------------------------------------------------
+-- procedure get_categories_for_ddl
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `northwind`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_categories_for_ddl`()
+BEGIN
+
+		SELECT 	CategoryID as value,
+				CategoryName as text 
+		FROM    categories
+        order by CategoryName;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure get_products
 -- -----------------------------------------------------
 
@@ -61,6 +78,23 @@ BEGIN
 				Country,
 		Phone
 		FROM suppliers;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure get_suppliers_for_ddl
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `northwind`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_suppliers_for_ddl`()
+BEGIN
+
+		SELECT 	SupplierID as value,
+				CompanyName as text 
+		FROM suppliers
+        order by CompanyName;
 END$$
 
 DELIMITER ;
