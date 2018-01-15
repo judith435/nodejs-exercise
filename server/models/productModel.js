@@ -12,4 +12,3 @@ function Product(prod) {
 }
 
 module.exports.Product = Product;
-

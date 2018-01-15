@@ -1,11 +1,11 @@
 var express = require('express');
 var bodyParser = require("body-parser");
-var dalGetProds = require('./productAPI.js');
-var dalGetSuppl = require('./sqlSupplier.js');
-var dalGetSupplDDL = require('./sqlSupplierDDL.js');
-var dalGetCategorylDDL = require('./sqlCategoryDDL.js');
 
-var productAPI = require('./productAPI.js');
+var apiProducts = require('./api/productAPI.js');
+var apiSuppliers = require('./api/supplierAPI.js');
+
+// var dalGetSupplDDL = require('./sqlSupplierDDL.js');
+var dalGetCategorylDDL = require('./sqlCategoryDDL.js');
 
 
 var fs = require('fs');
@@ -21,11 +21,6 @@ app.use(bodyParser.json());
 app.use(express.static('../client'));
 app.use(express.static('../node_modules'));
 
-
-// Express - to serve the client
-// body parser - To handle the data of post
-
-
 // Listen to '/' in GET Verb methods - serve the main Angular index.html file
 app.get('/', function (req, res) {
 
@@ -38,44 +33,20 @@ app.get('/', function (req, res) {
    
 });
 
-// app.all('/product', function (req, res, next) {
-//     console.log('Accessing the secret section ...')
-// })
+app.get('/product', apiProducts.getProducts);
+app.get('/supplier', apiSuppliers.getSuppliers);
+app.get('/supplier/ddl', apiSuppliers.getSuppliersDDL);
 
- app.get('/product', productAPI.getProducts);
-//  app.get('/product', function (req, res) {
+
+// app.get('/supplierDDL', function (req, res) {
 //     console.log(req.body); // get the body data of get
-//     dalGetProds.getProducts(function(err, products) {
+//     dalGetSupplDDL.getSuppliersForDDL(function(err, suppliers) {
 //         if (err) {
-//             res.end('Sorry Dude!');
+//             res.end('Sorry Dude!: ' + err);
 //         }
-//         res.end(JSON.stringify(products));
+//         res.end(JSON.stringify(suppliers));
 //     })
 // });
-
-
-app.get('/supplier', function (req, res) {
-    console.log(req.body); // get the body data of get
-    dalGetSuppl.getSuppliers(function(err, suppliers) {
-        if (err) {
-            res.end('Sorry Dude!');
-        }
-        res.end(JSON.stringify(suppliers));
-    })
-});
-
-
-
-
-app.get('/supplierDDL', function (req, res) {
-    console.log(req.body); // get the body data of get
-    dalGetSupplDDL.getSuppliersForDDL(function(err, suppliers) {
-        if (err) {
-            res.end('Sorry Dude!: ' + err);
-        }
-        res.end(JSON.stringify(suppliers));
-    })
-});
 
 app.get('/categoryDDL', function (req, res) {
     console.log(req.body); // get the body data of get

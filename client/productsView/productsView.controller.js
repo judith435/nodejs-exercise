@@ -3,9 +3,9 @@ hwApp.controller('showProductsCtrl', function handleProducts($scope, productServ
     
     function getProducts() {
         productService.getProducts(function(products) {
-            const prods = products.data[0];
+            const prods = products.data;
             $scope.keys = Object.keys(prods[0]);
-            $scope.products = (products.data[0]);
+            $scope.products = (products.data);
         });
     }
 });

@@ -1,24 +1,24 @@
-var productCtrl = require('./productController');
+var productCtrl = require('../controllers/productController');
 
 
 function getProducts(req, res) {
     console.log(req.body); // get the body data of get
-    dalGetProds.getProducts(function(err, products) {
+    productCtrl.getProducts(function(err, products) {
         if (err) {
-            res.end('Sorry Dude!');
+            res.end('Sorry Dude! '+ err);
         }
         res.end(JSON.stringify(products));
     })
 }
 
 
-productCtrl.Read(function(err, products) {
-    if (err) {
-        res.end('error!');
-    }
+// productCtrl.Read(function(err, products) {
+//     if (err) {
+//         res.end('error!');
+//     }
 
-    res.end(JSON.stringify(products));
-})
+//     res.end(JSON.stringify(products));
+// })
    
 
 // // Step 1

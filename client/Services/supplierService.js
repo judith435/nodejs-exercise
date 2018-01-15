@@ -5,7 +5,7 @@ hwApp.service('supplierService', function($http) {
     }
 
     this.getSuppliersForDDL = function (success) { 
-        $http.get('http://localhost:8081/supplierDDL',{}).then(success, error);
+        $http.get('http://localhost:8081/supplier/ddl',{}).then(success, error);
     }
 
 

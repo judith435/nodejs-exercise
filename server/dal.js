@@ -11,7 +11,6 @@ function executeQuery(sp, callback) {
         }
     );
 
-    // 3.cconnect
     con.connect(function (err) {
         if (err) {
             console.log('Error connecting to DB:' + err);
@@ -20,12 +19,11 @@ function executeQuery(sp, callback) {
         console.log('Connected');
     });
 
-    // 4. crud : insert
-    // use backtick `` for free text
-    con.query('Call'+ sp + '()', function (err, rows) {
+    con.query('Call ' + sp + '()', function (err, rows) {
         if (err) {
             callback(err);
-        } else {
+        } 
+        else {
             callback(null, rows)
             /*rows.forEach(function (row) {
                 arr.push(row);

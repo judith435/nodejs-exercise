@@ -1,6 +1,5 @@
-var dal = require('./dal');
-//var models = require('./models');
-var model = require('./productModel');
+var dal = require('../dal');
+var model = require('../models/productModel');
 
 
 function getProducts(callback) {
@@ -8,9 +7,8 @@ function getProducts(callback) {
         if (err) {
             callback(err);
         }
-
         const productsObjectsArray = [];
-        rows.forEach(function (row) {
+        rows[0].forEach(function (row) {
             productsObjectsArray.push(new model.Product(row));
         });
         callback(null, productsObjectsArray);

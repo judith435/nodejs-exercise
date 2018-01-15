@@ -3,9 +3,9 @@ hwApp.controller('showSuppliersCtrl', function handleSuppliers($scope, supplierS
     
     function getSuppliers() {
         supplierService.getSuppliers(function(suppliers) {
-            const suppl = suppliers.data[0];
+            const suppl = suppliers.data;
             $scope.keys = Object.keys(suppl[0]);
-            $scope.suppliers = (suppliers.data[0]);
+            $scope.suppliers = (suppliers.data);
         });
     }
 });
