@@ -1,4 +1,4 @@
-hwApp.controller('addProductsCtrl', function addProduct($scope, productService, supplierService) {
+hwApp.controller('addProductsCtrl', function addProduct($scope, productService, supplierService, categoryService) {
     fillDDLs();
     $scope.form = {
         name : "frmAddProduct", 
@@ -78,7 +78,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, productService, 
             $scope.form.fields[index].options = suppliers.data[0];
         });
 
-        productService.getCategoriesForDDL(function(categories) {
+        categoryService.getCategoriesForDDL(function(categories) {
             index =  $scope.form.fields.findIndex(x => x.name == 'category');
             $scope.form.fields[index].options = categories.data[0];
         });

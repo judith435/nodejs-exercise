@@ -25,9 +25,7 @@ function executeQuery(sp, callback) {
         } 
         else {
             callback(null, rows)
-            /*rows.forEach(function (row) {
-                arr.push(row);
-            });*/
+            console.log('dal for sp: ' + sp + ' => '+   JSON.stringify(rows));
         }
     });
     con.end();

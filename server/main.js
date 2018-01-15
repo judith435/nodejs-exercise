@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 
 var apiProducts = require('./api/productAPI.js');
 var apiSuppliers = require('./api/supplierAPI.js');
+var apiCategories = require('./api/categoryAPI.js');
 
 // var dalGetSupplDDL = require('./sqlSupplierDDL.js');
 var dalGetCategorylDDL = require('./sqlCategoryDDL.js');
@@ -36,28 +37,7 @@ app.get('/', function (req, res) {
 app.get('/product', apiProducts.getProducts);
 app.get('/supplier', apiSuppliers.getSuppliers);
 app.get('/supplier/ddl', apiSuppliers.getSuppliersDDL);
-
-
-// app.get('/supplierDDL', function (req, res) {
-//     console.log(req.body); // get the body data of get
-//     dalGetSupplDDL.getSuppliersForDDL(function(err, suppliers) {
-//         if (err) {
-//             res.end('Sorry Dude!: ' + err);
-//         }
-//         res.end(JSON.stringify(suppliers));
-//     })
-// });
-
-app.get('/categoryDDL', function (req, res) {
-    console.log(req.body); // get the body data of get
-    dalGetCategorylDDL.getCategoriesForDDL(function(err, categories) {
-        if (err) {
-            res.end('Sorry Dude!: ' + err);
-        }
-        res.end(JSON.stringify(categories));
-    })
-});
-
+app.get('/category/ddl', apiCategories.getCategoriesDDL);
 
 // Listen to '/product' in POST Verb methods
  app.post('/product', function (req, res) {

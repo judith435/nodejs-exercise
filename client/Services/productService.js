@@ -4,11 +4,6 @@ hwApp.service('productService', function($http) {
             $http.get('http://localhost:8081/product',{}).then(success, error);
         }
 
-        this.getCategoriesForDDL = function (success) { 
-            $http.get('http://localhost:8081/categoryDDL',{}).then(success, error);
-        }
-
-
         // this.updateNorthwind = function(data, onSuccess, onError) {
         //     $http({
         //         url: 'http://localhost:8081/' + data.tableName,
