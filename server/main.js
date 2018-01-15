@@ -5,10 +5,6 @@ var apiProducts = require('./api/productAPI.js');
 var apiSuppliers = require('./api/supplierAPI.js');
 var apiCategories = require('./api/categoryAPI.js');
 
-// var dalGetSupplDDL = require('./sqlSupplierDDL.js');
-var dalGetCategorylDDL = require('./sqlCategoryDDL.js');
-
-
 var fs = require('fs');
 
 var app = express();
@@ -39,14 +35,27 @@ app.get('/supplier', apiSuppliers.getSuppliers);
 app.get('/supplier/ddl', apiSuppliers.getSuppliersDDL);
 app.get('/category/ddl', apiCategories.getCategoriesDDL);
 
+app.get('/Xproduct', apiProducts.addProduct);
 // Listen to '/product' in POST Verb methods
- app.post('/product', function (req, res) {
-     console.log(req.body); // get the body data of post
-     res.end("in post producti");
- })
+//  app.post('/product', function (req, res) {
+//      console.log(req.body); // get the body data of post
+//      res.end("in post producti");
+//  })
 
 
 // Start the server
 var server = app.listen(8081, function () {
 
 })
+
+
+// app.route('/book')
+//   .get(function (req, res) {
+//     res.send('Get a random book')
+//   })
+//   .post(function (req, res) {
+//     res.send('Add a book')
+//   })
+//   .put(function (req, res) {
+//     res.send('Update the book')
+//   })

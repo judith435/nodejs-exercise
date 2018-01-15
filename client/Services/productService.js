@@ -16,6 +16,15 @@ hwApp.service('productService', function($http) {
         // }
     
 
+        this.addProduct = function(prod, onSuccess, onError) {
+            $http({
+                url: 'http://localhost:8081/',
+                method: 'POST',
+                params: {
+                    product: data
+                }
+            }).then(onSuccess, onError);
+        }
 
         function error(response) {
             alert("Sorry Error occured in $http: " + JSON.stringify(response));
