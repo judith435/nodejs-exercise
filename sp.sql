@@ -4,6 +4,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 CREATE SCHEMA IF NOT EXISTS `northwind` DEFAULT CHARACTER SET latin1 ;
 USE `northwind` ;
+USE `northwind` ;
 
 -- -----------------------------------------------------
 -- procedure get_categories_for_ddl
@@ -31,13 +32,13 @@ USE `northwind`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_products`()
 BEGIN
 
-		SELECT 	tblProd.ProductID,
-				tblProd.ProductName,
-				tblSuppliers.CompanyName,
-				tblCateg.CategoryName,
-				tblProd.QuantityPerUnit,
-				tblProd.UnitPrice,
-				tblProd.UnitsInStock
+		SELECT 	tblProd.ProductID as productID,
+				tblProd.ProductName as productName,
+				tblSuppliers.CompanyName as supplierName,
+				tblCateg.CategoryName as categoryName,
+				tblProd.QuantityPerUnit as quantityPerUnit,
+				tblProd.UnitPrice as unitPrice,
+				tblProd.UnitsInStock as unitsInStock
 		FROM northwind.products tblProd
 		inner join suppliers tblSuppliers
 		on tblProd.ProductID = tblSuppliers.SupplierID
