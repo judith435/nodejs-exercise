@@ -1,9 +1,9 @@
-var dal = require('../dal');
+var dal = require('../dal/dal');
 var model = require('../models/supplierModel');
 
 
 function getSuppliers(callback) {
-    dal.executeQuery('get_suppliers', function(err, rows) {
+    dal.executeQuery('get_suppliers', '',function(err, rows) {
         if (err) {
             callback(err);
         }
@@ -17,7 +17,7 @@ function getSuppliers(callback) {
 
 
 function getSuppliersDDL(callback) {
-    dal.executeQuery('get_suppliers_for_ddl', function(err, rows) {
+    dal.executeQuery('get_suppliers_for_ddl', '',function(err, rows) {
         if (err) {
             callback(err);
         }

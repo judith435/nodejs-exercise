@@ -1,7 +1,7 @@
-var dal = require('../dal');
+var dal = require('../dal/dal');
 
 function getCategoriesDDL(callback) {
-    dal.executeQuery('get_categories_for_ddl', function(err, rows) {
+    dal.executeQuery('get_categories_for_ddl', '' ,function(err, rows) {
         if (err) {
             callback(err);
         }
