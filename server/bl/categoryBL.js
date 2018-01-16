@@ -5,7 +5,7 @@ function getCategoriesDDL(callback) {
         if (err) {
             callback(err);
         }
-        console.log('category bl:  ' +  JSON.stringify(rows));
+        //console.log('category bl:  ' +  JSON.stringify(rows));
         callback(null, rows);
     });
 }

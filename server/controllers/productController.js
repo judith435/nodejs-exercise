@@ -12,9 +12,10 @@ function getProducts(callback) {
     })
 }
 
-function addProduct(callback) {
+function addProduct(req, callback) {
+    console.log('>>> productContoller: ' + req.query); // get req.body the body data of get
 
-    bl.products.addProduct(function(err, result) {
+    bl.products.addProduct(req, function(err, result) {
         if (err) {
             callback(err);
         }
@@ -24,3 +25,4 @@ function addProduct(callback) {
 
 
 module.exports.getProducts = getProducts;
+module.exports.addProduct = addProduct;

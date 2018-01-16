@@ -15,20 +15,22 @@ function getProducts(callback) {
     });
 }
 
-function addProduct(callback) {
-    callback(null, 'gunibush');
-    // dal.executeQuery('get_products', function(err, rows) {
-    //     if (err) {
-    //         callback(err);
-    //     }
-    //     const productsObjectsArray = [];
-    //     rows[0].forEach(function (row) {
-    //         productsObjectsArray.push(new model.Product(row));
-    //     });
-    //     callback(null, productsObjectsArray);
-    // });
+function addProduct(req, callback) {
+    console.log('>>> productBL: ' + JSON.stringify(req.query));  
+    // callback(null, 'gunibush');
+    dal.executeQuery('get_products', function(err, rows) {
+        if (err) {
+            callback(err);
+        }
+        const productsObjectsArray = [];
+        rows[0].forEach(function (row) {
+            productsObjectsArray.push(new model.Product(row));
+        });
+        callback(null, productsObjectsArray);
+    });
 }
 
 module.exports.products = {
-    getProducts: getProducts
+    getProducts: getProducts,
+    addProduct: addProduct
 }

@@ -101,7 +101,6 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, productService, 
         // } 
         let index = 0;
         product = {
-            tableName: 'products',
             productName: $scope.form.fields[index].content,
             supplier: $scope.form.fields[++index].content,
             category: $scope.form.fields[++index].content,
@@ -111,7 +110,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, productService, 
 
         };
 
-        productService.updateNorthwind(product, function(response) {
+        productService.addProduct(product, function(response) {
             $scope.message = (JSON.stringify(response.data));
         });
         $scope.errorsFound = false;

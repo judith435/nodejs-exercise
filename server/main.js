@@ -35,7 +35,7 @@ app.get('/supplier', apiSuppliers.getSuppliers);
 app.get('/supplier/ddl', apiSuppliers.getSuppliersDDL);
 app.get('/category/ddl', apiCategories.getCategoriesDDL);
 
-app.get('/Xproduct', apiProducts.addProduct);
+app.post('/product', apiProducts.addProduct);
 // Listen to '/product' in POST Verb methods
 //  app.post('/product', function (req, res) {
 //      console.log(req.body); // get the body data of post

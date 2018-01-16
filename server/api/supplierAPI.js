@@ -2,7 +2,7 @@ var supplierCtrl = require('../controllers/supplierController');
 
 
 function getSuppliers(req, res) {
-    console.log(req.body); // get the body data of get
+    //console.log(req.body); // get the body data of get
     supplierCtrl.getSuppliers(function(err, suppliers) {
         if (err) {
             res.end('Sorry Dude! '+ err);
@@ -13,7 +13,7 @@ function getSuppliers(req, res) {
 
 
 function getSuppliersDDL(req, res) {
-    console.log(req.body); // get the body data of get
+    //console.log(req.body); // get the body data of get
     supplierCtrl.getSuppliersDDL(function(err, suppliers) {
         if (err) {
             res.end('Sorry Dude! '+ err);

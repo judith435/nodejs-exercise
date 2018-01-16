@@ -16,16 +16,19 @@ function executeQuery(sp, callback) {
             console.log('Error connecting to DB:' + err);
             return;
         }
-        console.log('Connected');
+        //console.log('Connected');
     });
 
+    // con.query('SET @nId = 10; CALL myProcedure(@nId); SELECT @nId;')
     con.query('Call ' + sp + '()', function (err, rows) {
         if (err) {
             callback(err);
         } 
         else {
             callback(null, rows)
-            console.log('dal for sp: ' + sp + ' => '+   JSON.stringify(rows));
+            //console.log('dal for sp: ' + sp + ' => '+   JSON.stringify(rows));
+            console.log('dal for sp: ' + sp);
+
         }
     });
     con.end();
