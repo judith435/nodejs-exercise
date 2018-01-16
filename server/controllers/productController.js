@@ -1,4 +1,5 @@
 var bl = require('../bl/productBL');
+var model = require('../models/productModel');
 
 // CRUD
 function getProducts(callback) {
@@ -7,15 +8,18 @@ function getProducts(callback) {
         if (err) {
             callback(err);
         }
-       // console.log('prod controller after Call get_products() json stringify productsObjectsArray' +  JSON.stringify(prodArray));
         callback(null, prodArray);
     })
 }
 
 function addProduct(req, callback) {
     console.log('>>> productContoller: ' + req.query); // get req.body the body data of get
+    const product = new model.Product(JSON.parse(req.query.product));
+    
+    //perform server side validations on product
 
-    bl.products.addProduct(req, function(err, result) {
+
+    bl.products.addProduct(product, function(err, result) {
         if (err) {
             callback(err);
         }

@@ -102,8 +102,8 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, productService, 
         let index = 0;
         product = {
             productName: $scope.form.fields[index].content,
-            supplier: $scope.form.fields[++index].content,
-            category: $scope.form.fields[++index].content,
+            supplierID: $scope.form.fields[++index].content,
+            categoryID: $scope.form.fields[++index].content,
             quantityPerUnit: $scope.form.fields[++index].content,
             unitPrice: $scope.form.fields[++index].content,
             discontinued: $scope.form.fields[++index].content
