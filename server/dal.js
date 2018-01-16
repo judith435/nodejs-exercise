@@ -20,6 +20,8 @@ function executeQuery(sp, callback) {
     });
 
     // con.query('SET @nId = 10; CALL myProcedure(@nId); SELECT @nId;')
+    // con.query('CALL sp_get_employee_detail(1)', (err, rows) => {
+    //     if(err) throw err;
     con.query('Call ' + sp + '()', function (err, rows) {
         if (err) {
             callback(err);
