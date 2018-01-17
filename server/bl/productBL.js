@@ -16,7 +16,22 @@ function getProducts(callback) {
     });
 }
 
-function addProduct(product, callback) { //product.categoryID   product.productName
+function checkDuplicateProduct(product, callback) {
+    const spParms = []; 
+    spParms.push(new parmObject.spParm(product.productName, true));
+    spParms.push(new parmObject.spParm(product.supplierID, false));
+    spParms.push(new parmObject.spParm(product.categoryID, false));
+
+    dal.executeQuery('check_product_exists', spParms, function(err, productID) {
+        if (err) {
+            callback(err);
+        }
+        callback(null, productID);
+    });
+}
+
+
+function addProduct(product, callback) { 
 
     console.log('>>> productBL: ' + JSON.stringify(product));  
 
@@ -40,5 +55,6 @@ function addProduct(product, callback) { //product.categoryID   product.productN
 
 module.exports.products = {
     getProducts: getProducts,
+    checkDuplicateProduct: checkDuplicateProduct,
     addProduct: addProduct
 }

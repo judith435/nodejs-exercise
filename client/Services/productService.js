@@ -4,14 +4,21 @@ hwApp.service('productService', function($http) {
             $http.get('http://localhost:8081/product',{}).then(success, error);
         }
 
-        this.addProduct = function(prod, onSuccess, onError) {
+        this.checkDuplicateProduct = function (prod, success, error) { 
+            $http({
+                url: 'http://localhost:8081/product/duplicate', 
+                method: 'GET',
+                params: { product: prod }
+             });
+        }
+
+
+        this.addProduct = function(prod, success, error) {
             $http({
                 url: 'http://localhost:8081/product',
                 method: 'POST',
-                params: {
-                    product: prod
-                }
-            }).then(onSuccess, onError);
+                params: { product: prod }
+            }).then(success, error);
         }
 
         function error(response) {

@@ -31,6 +31,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/product', apiProducts.getProducts);
+app.get('/product/duplicate', apiProducts.checkDuplicateProduct);
 app.get('/supplier', apiSuppliers.getSuppliers);
 app.get('/supplier/ddl', apiSuppliers.getSuppliersDDL);
 app.get('/category/ddl', apiCategories.getCategoriesDDL);

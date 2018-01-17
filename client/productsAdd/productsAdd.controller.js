@@ -92,13 +92,7 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, productService, 
         });
         if ($scope.errorsFound) { return; }
         alert ('no errors found!!!');
-        // // validationService.setSelectedDirector($scope.selectedDirector);
-        // if (!validationService.checkDuplicateMovie($scope.selectedDirector))
-        // {
-        //     $scope.errorsFound = true;
-        //     $scope.duplicateFound = true;
-        //     return;
-        // } 
+
         let index = 0;
         product = {
             productName: $scope.form.fields[index].content,
@@ -107,8 +101,15 @@ hwApp.controller('addProductsCtrl', function addProduct($scope, productService, 
             quantityPerUnit: $scope.form.fields[++index].content,
             unitPrice: $scope.form.fields[++index].content,
             discontinued: $scope.form.fields[++index].content
-
         };
+
+        $scope.duplicateProductErrorMessage = '';
+        if (!productService.checkDuplicateProduct(product))
+        {
+            $scope.errorsFound = true;
+            $scope.duplicateProductErrorMessage = 'product with same name, supplier and category already exists';
+            return;
+        } 
 
         productService.addProduct(product, function(response) {
             $scope.message = (JSON.stringify(response.data));

@@ -26,8 +26,8 @@
             </div>
         </div>
         <div class="form-group row">
-            <input  type="text" ng-model="duplicateMovie" name="duplicateMovie" class="validation_errors">
-            <label  ng-show="duplicateFound"  class="validationError">dupli error</label>     
+            <!-- <input  type="text" ng-model="duplicateMovie" name="duplicateMovie" class="validation_errors"> -->
+            <label class="validationError">{{duplicateProductErrorMessage}}</label>     
         </div>
         <div class=message>{{message}}</div>
     </form>
